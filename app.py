@@ -7,7 +7,6 @@ import time
 import sys
 import requests
 import re
-import urllib.request
 import random
 
 import nltk 
