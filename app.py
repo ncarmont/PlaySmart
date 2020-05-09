@@ -2,7 +2,6 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
-
 from selenium import webdriver
 from bs4  import BeautifulSoup
 import pandas as pd
@@ -71,9 +70,12 @@ app = Flask(__name__)
 def landing_page():
     return render_template('input.html')
 
-@app.route('/nexter', methods=['GET','POST'])
+@app.route('/nexter', methods=['POST'])
 def nexter():
 
+    if not request.form:
+        return render_template('notFound.html')
+    
     curr = int(request.form['curr'])
     searchTerm = request.form['searchTerm']
     totalSent = request.form['totalSent']
@@ -122,6 +124,9 @@ def nexter():
 
 @app.route('/search', methods=['POST'])
 def suggestions():
+
+    if not request.form:
+        return render_template('notFound.html')
 
     searchTerm = request.form['searchTerm']
    
