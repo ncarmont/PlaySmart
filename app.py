@@ -2,11 +2,6 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
-from selenium import webdriver
-from bs4  import BeautifulSoup
-import pandas as pd
-from webdriver_manager.chrome import ChromeDriverManager
-import random
 import string
 import time
 import sys
