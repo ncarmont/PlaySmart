@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-12">
+  <h3> PlaySmart</h3>
+
+
+  <br>
+
+  <br />
+  {{sent}}
+  <br />
+  <br />
+  <p>Fill in these words:</p>
+
+
+  {% for randWord in allOptions %}
+  {% if randWord[1]==1 %}
+  <form action="/nexter" method="post">
+    <input type="submit" value="{{randWord[0]}}" />
+    <input type="text" id="curr" name="curr" readonly />
+    <input type="text" id="searchTerm" name="searchTerm" readonly />
+    <input type="text" id="totalSent" name="totalSent" readonly />
+  </form>
+  {% else %} <button>{{randWord[0]}}</button>
+  {% endif %}
+  <br />
+  {% endfor %}
+
+
+  <br />
+
+
+  <!-- storeLocalStore({{curr}}+1) -->
+
+
+  {% block javascript %}
+  <script>
+
+    function storeLocalStore(key, value) {
+      window.localStorage.setItem(key, value);
+
+    }
+
+    function getLocalStore(key) {
+      return window.localStorage.getItem(key);
+    }
+
+
+    document.getElementById("curr").value = {{ curr }};
+    document.getElementById("searchTerm").value = "{{ searchTerm }}";
+    document.getElementById("totalSent").value = {{ totalSent }};
+
+  </script>
+  {% endblock %}
+
+</div>
+
+{% endblock %}
